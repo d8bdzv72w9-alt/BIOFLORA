@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOFLORA · Florería sostenible y educativa</title>
+    <meta name="description" content="Plantas, macetas e insumos con guías de cuidado para aulas, hogares y huertos escolares.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header class="cabecera">
+    <div class="cabecera-in">
+        <button id="btn-menu" class="icono-btn menu-movil" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><i data-ic="menu"></i></button>
+        <a class="logo" href="#/inicio"><span class="logo-marca"><i data-ic="leaf"></i></span> BIOFLORA</a>
+
+        <nav id="nav" class="nav">
+            <button id="nav-cerrar" class="nav-cerrar" aria-label="Cerrar menú"><i data-ic="x"></i></button>
+            <a href="#/inicio" data-ruta="inicio">Inicio</a>
+            <a href="#/tienda" data-ruta="tienda">Tienda</a>
+            <a href="#/guias" data-ruta="guias">Guías de cuidado</a>
+            <a href="#/nosotros" data-ruta="nosotros">Sobre nosotros</a>
+            <a href="#/pedidos" data-ruta="pedidos" id="nav-pedidos" hidden>Mis pedidos</a>
+        </nav>
+
+        <div class="cab-acciones">
+            <button id="btn-carrito" class="icono-btn" aria-label="Carrito de compras">
+                <i data-ic="cart"></i><span id="contador-carrito" class="burbuja" hidden>0</span>
+            </button>
+            <div id="zona-invitado">
+                <button class="btn btn-borde btn-sm" data-accion="abrir-login">Ingresar</button>
+                <button class="btn btn-amarillo btn-sm" data-accion="abrir-registro">Crear cuenta</button>
+            </div>
+            <div id="zona-usuario" class="menu-usuario" hidden>
+                <button id="btn-usuario" class="usuario-btn"><span id="avatar" class="avatar">A</span><span id="usuario-nombre"></span></button>
+                <div id="menu-usuario" class="desplegable" hidden>
+                    <a href="#/pedidos"><i data-ic="package"></i> Mis pedidos</a>
+                    <a href="admin.html" id="menu-admin" hidden><i data-ic="grid"></i> Panel de administración</a>
+                    <button data-accion="cerrar-sesion"><i data-ic="logout"></i> Cerrar sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nav-fondo" class="nav-fondo"></div>
+</header>
+
+<main>
+    <!-- ===================== INICIO ===================== -->
+    <section id="vista-inicio" class="vista">
+        <div class="hero">
+            <div class="hero-in">
+                <div>
+                    <span id="hero-eyebrow" class="eyebrow">Florería sostenible y educativa</span>
+                    <h1>Plantas que crecen,<br><em>aulas que aprenden</em></h1>
+                    <p class="lead">BIOFLORA une una florería en línea con educación ambiental: cada planta llega con su guía de cuidado para que los huertos escolares y las aulas verdes sobrevivan y enseñen.</p>
+                    <div class="hero-botones">
+                        <a class="btn btn-amarillo btn-lg" href="#/tienda">Explorar la tienda <i data-ic="arrow"></i></a>
+                        <button class="btn btn-borde btn-lg solo-invitado" data-accion="abrir-registro">Crear mi cuenta</button>
+                        <a class="btn btn-borde btn-lg solo-usuario" href="#/pedidos" hidden>Mis pedidos</a>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-circulo">🪴</div>
+                    <span class="flota f1"><i data-ic="sun"></i> Luz alta</span>
+                    <span class="flota f2"><i data-ic="droplet"></i> Riego quincenal</span>
+                    <span class="flota f3"><i data-ic="book"></i> Guía incluida</span>
+                    <span class="flota f4">🌱 Nivel fácil</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="banda"><div class="banda-in">
+            <div class="dato"><strong id="n-productos">—</strong><span>Productos disponibles</span></div>
+            <div class="dato"><strong id="n-guias">—</strong><span>Guías de cuidado, siembra y reciclaje</span></div>
+            <div class="dato"><strong id="n-categorias">—</strong><span>Categorías para tu proyecto verde</span></div>
+        </div></div>
+
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="seccion-titulo">
+                    <span class="eyebrow">Cómo funciona</span>
+                    <h2>Del catálogo a tu huerto en tres pasos</h2>
+                    <p>Sin adivinar: eliges con información y cuidas con una guía.</p>
+                </div>
+                <div class="pasos">
+                    <div class="paso-card"><div class="num">1</div><h3>Explora y filtra</h3><p>Busca por luz, riego, tamaño y uso hasta encontrar la planta ideal para tu aula, hogar o huerto.</p></div>
+                    <div class="paso-card"><div class="num">2</div><h3>Elige con su guía</h3><p>Cada producto trae su guía de cuidado, siembra o reciclaje para que tu planta no se pierda.</p></div>
+                    <div class="paso-card"><div class="num">3</div><h3>Recibe y haz seguimiento</h3><p>Retira en la institución o pide a domicilio, y sigue el estado de tu pedido desde tu cuenta.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion seccion-alt">
+            <div class="contenedor">
+                <div class="seccion-titulo"><span class="eyebrow">Categorías</span><h2>Todo para tu rincón verde</h2></div>
+                <div id="inicio-categorias" class="cats"><p class="cargando">Cargando…</p></div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="seccion-titulo"><span class="eyebrow">Destacados</span><h2>Para empezar con el pie derecho</h2><p>Productos con guía lista para consultar.</p></div>
+                <div id="inicio-destacados" class="grid-productos"><p class="cargando">Cargando…</p></div>
+                <p style="text-align:center;margin-top:32px"><a class="btn btn-fantasma" href="#/tienda">Ver todo el catálogo <i data-ic="arrow"></i></a></p>
+            </div>
+        </section>
+
+        <section class="seccion seccion-alt">
+            <div class="contenedor">
+                <div class="seccion-titulo"><span class="eyebrow">Por qué BIOFLORA</span><h2>No solo vendemos plantas: te acompañamos</h2></div>
+                <div class="features">
+                    <div class="feature"><div class="feature-ic"><i data-ic="book"></i></div><div><h3>Venta y educación en un solo lugar</h3><p>Cada producto incluye su guía de cuidado, para saber cómo mantener viva la planta.</p></div></div>
+                    <div class="feature"><div class="feature-ic"><i data-ic="users"></i></div><div><h3>Pensada para la comunidad educativa</h3><p>Plantas resistentes y de bajo mantenimiento, ideales para principiantes y huertos escolares.</p></div></div>
+                    <div class="feature"><div class="feature-ic"><i data-ic="search"></i></div><div><h3>Búsqueda por necesidad</h3><p>Filtra por cantidad de luz, frecuencia de riego, tamaño o dificultad en lugar de adivinar.</p></div></div>
+                    <div class="feature"><div class="feature-ic"><i data-ic="recycle"></i></div><div><h3>Sostenibilidad</h3><p>Promovemos el reciclaje de envases como macetas y el uso de materiales locales.</p></div></div>
+                    <div class="feature"><div class="feature-ic"><i data-ic="truck"></i></div><div><h3>Accesible y práctico</h3><p>Diseño pensado para el celular, pedidos sencillos y seguimiento de cada compra.</p></div></div>
+                    <div class="feature"><div class="feature-ic"><i data-ic="shield"></i></div><div><h3>Cuenta segura</h3><p>Tus datos y contraseña viajan protegidos y solo tú ves tu historial de pedidos.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="cta-banner solo-invitado">
+                    <h2>Crea tu cuenta y empieza a cultivar</h2>
+                    <p>Con tu cuenta puedes hacer pedidos, leer las guías completas y seguir el estado de tus compras.</p>
+                    <div class="fila-botones" style="justify-content:center">
+                        <button class="btn btn-amarillo btn-lg" data-accion="abrir-registro">Crear cuenta</button>
+                        <button class="btn btn-borde btn-lg" data-accion="abrir-login">Ya tengo cuenta</button>
+                    </div>
+                </div>
+                <div class="cta-banner solo-usuario" hidden>
+                    <h2>¿Qué vamos a sembrar hoy?</h2>
+                    <p>Explora el catálogo, lee las guías completas y haz tus pedidos en un solo lugar.</p>
+                    <div class="fila-botones" style="justify-content:center">
+                        <a class="btn btn-amarillo btn-lg" href="#/tienda">Ir a la tienda</a>
+                        <a class="btn btn-borde btn-lg" href="#/guias">Leer guías</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion seccion-alt">
+            <div class="contenedor">
+                <div class="seccion-titulo"><span class="eyebrow">Preguntas frecuentes</span><h2>Resolvemos tus dudas</h2></div>
+                <div class="faq">
+                    <details><summary>¿Necesito una cuenta para comprar?</summary><p>Puedes explorar la tienda sin cuenta. Para agregar productos al carrito, hacer pedidos y leer las guías completas necesitas registrarte, es rápido y sencillo.</p></details>
+                    <details><summary>¿Cómo recibo mi pedido?</summary><p>Puedes elegir retiro en la institución o entrega a domicilio, indicando tu dirección al confirmar el pedido.</p></details>
+                    <details><summary>¿Las plantas incluyen guía de cuidado?</summary><p>Nuestros productos cuentan con guías de cuidado, siembra o reciclaje. Las encuentras en la ficha de cada producto y en la sección Guías de cuidado.</p></details>
+                    <details><summary>¿Cómo sé en qué estado está mi pedido?</summary><p>En la pestaña Mis pedidos ves cada compra con su seguimiento: Pendiente, En preparación o Entregado.</p></details>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ===================== TIENDA ===================== -->
+    <section id="vista-tienda" class="vista" hidden>
+        <div class="pagina-cab"><div class="contenedor">
+            <h1>Catálogo de plantas e insumos</h1>
+            <p>Encuentra la planta perfecta para tu aula, hogar o huerto escolar.</p>
+        </div></div>
+        <div class="contenedor tienda-layout">
+            <aside id="filtros-panel" class="filtros-panel">
+                <h3>Filtros</h3>
+                <label for="f-luz">Cantidad de luz</label>
+                <select id="f-luz"><option value="">Todas</option><option>Baja</option><option>Media</option><option>Alta</option></select>
+                <label for="f-riego">Frecuencia de riego</label>
+                <select id="f-riego"><option value="">Todas</option><option>Diario</option><option>Semanal</option><option>Quincenal</option><option>Mensual</option></select>
+                <label for="f-tamano">Tamaño</label>
+                <select id="f-tamano"><option value="">Todos</option><option>Pequeño</option><option>Mediano</option><option>Grande</option></select>
+                <label for="f-uso">Uso</label>
+                <select id="f-uso"><option value="">Todos</option><option>Aula</option><option>Huerto escolar</option><option>Hogar</option></select>
+                <button class="btn btn-fantasma btn-bloque btn-sm" style="margin-top:18px" data-accion="limpiar-filtros">Limpiar filtros</button>
+            </aside>
+            <div>
+                <div class="toolbar">
+                    <div class="campo-icono"><i data-ic="search"></i><input id="f-texto" type="search" placeholder="Buscar planta, maceta o kit..." aria-label="Buscar productos"></div>
+                    <select id="f-orden" aria-label="Ordenar">
+                        <option value="nombre">Nombre A–Z</option><option value="precio-asc">Precio: menor a mayor</option><option value="precio-desc">Precio: mayor a menor</option>
+                    </select>
+                    <button class="btn btn-fantasma btn-filtros-movil" data-accion="filtros-movil"><i data-ic="filter"></i> Filtros</button>
+                </div>
+                <div id="pills-categoria" class="pills"></div>
+                <div id="chips-activos" class="chips-activos"></div>
+                <p id="resumen-tienda" class="resumen"></p>
+                <div id="grid-tienda" class="grid-productos"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== GUÍAS ===================== -->
+    <section id="vista-guias" class="vista" hidden>
+        <div class="pagina-cab"><div class="contenedor">
+            <h1>Guías de cuidado</h1>
+            <p>Aprende a cuidar, sembrar y reciclar. Con tu cuenta accedes a cada guía completa.</p>
+        </div></div>
+        <div class="contenedor">
+            <div class="tabs" id="tabs-guias">
+                <button class="pill activo" data-accion="tab-guia" data-tipo="Todas">Todas</button>
+                <button class="pill" data-accion="tab-guia" data-tipo="Cuidado">Cuidado</button>
+                <button class="pill" data-accion="tab-guia" data-tipo="Siembra">Siembra</button>
+                <button class="pill" data-accion="tab-guia" data-tipo="Reciclaje">Reciclaje</button>
+            </div>
+            <div class="toolbar"><div class="campo-icono"><i data-ic="search"></i><input id="g-buscar" type="search" placeholder="Buscar guía o planta..."></div></div>
+            <div id="grid-guias" class="grid-guias"></div>
+        </div>
+    </section>
+
+    <!-- ===================== SOBRE NOSOTROS ===================== -->
+    <section id="vista-nosotros" class="vista" hidden>
+        <div class="pagina-cab"><div class="contenedor">
+            <h1>Sobre nosotros</h1>
+            <p>Un proyecto estudiantil que quiere que cada planta crezca y cada estudiante aprenda cuidándola.</p>
+        </div></div>
+
+        <section class="seccion"><div class="contenedor dos-col-texto">
+            <div>
+                <span class="eyebrow">Nuestra misión</span>
+                <h2>Un solo lugar para conseguir plantas y aprender a cuidarlas</h2>
+                <p>BIOFLORA es una aplicación web que combina una florería en línea con una plataforma de educación ambiental. Nace para la comunidad educativa: estudiantes, docentes y centros que desean mantener huertos escolares y plantas en el aula.</p>
+                <p>A diferencia de una florería tradicional, acompañamos cada producto con guías prácticas y promovemos la sostenibilidad.</p>
+            </div>
+            <div class="cita">“Que cada planta que llegue a un aula o a un huerto escolar crezca, y que cada estudiante aprenda cuidándola.”<small>Nuestra misión</small></div>
+        </div></section>
+
+        <section class="seccion seccion-alt"><div class="contenedor">
+            <div class="seccion-titulo"><span class="eyebrow">El problema</span><h2>Por qué los proyectos ambientales se abandonan</h2></div>
+            <div class="problemas">
+                <div class="problema"><h4>Falta de información confiable</h4><p>No se sabe qué planta elegir, cuánta luz o agua necesita ni cómo cuidarla, y muchas mueren a las pocas semanas.</p></div>
+                <div class="problema"><h4>Dificultad para conseguir materiales</h4><p>Comprar plantas, macetas, tierra y semillas implica desplazarse y comparar precios sin un catálogo claro.</p></div>
+                <div class="problema"><h4>Florerías sin enfoque educativo</h4><p>Venden productos, pero no acompañan con asesoría ni contenido pensado para un centro educativo.</p></div>
+                <div class="problema"><h4>Poca educación ambiental práctica</h4><p>Los temas ambientales se quedan en la teoría, sin herramientas para aprender cuidando algo real.</p></div>
+            </div>
+        </div></section>
+
+        <section class="seccion"><div class="contenedor">
+            <div class="seccion-titulo"><span class="eyebrow">El equipo</span><h2>Las personas detrás de BIOFLORA</h2>
+                <p>Estudiantes de Bachillerato Técnico Vocacional en Desarrollo de Software, sección 3-3, Instituto Nacional General Francisco Menéndez (INFRAMEN).</p></div>
+            <div class="equipo">
+                <div class="miembro"><div class="avatar-gr">O</div><h4>Oswaldo Ernesto Trinidad Campos</h4><p>Integrante del equipo</p></div>
+                <div class="miembro"><div class="avatar-gr">G</div><h4>Gerson Armando Villalta Reyna</h4><p>Integrante del equipo</p></div>
+                <div class="miembro"><div class="avatar-gr">T</div><h4>Tatiana Melissa Aguilar Beltrán</h4><p>Integrante del equipo</p></div>
+            </div>
+            <p style="text-align:center;color:#667068;margin-top:28px">Docente: Denisse Zoraida Alvarado de Miranda</p>
+        </div></section>
+    </section>
+
+    <!-- ===================== MIS PEDIDOS ===================== -->
+    <section id="vista-pedidos" class="vista" hidden>
+        <div class="pagina-cab"><div class="contenedor">
+            <h1>Mis pedidos</h1>
+            <p>Revisa el estado de cada compra y los productos que incluye.</p>
+        </div></div>
+        <div class="contenedor" style="padding-bottom:60px">
+            <div id="stats-pedidos" class="stats-pedidos"></div>
+            <div id="lista-pedidos"></div>
+        </div>
+    </section>
+</main>
+
+<footer class="pie">
+    <div class="pie-in">
+        <div>
+            <a class="logo" href="#/inicio" style="padding:0 0 12px"><span class="logo-marca"><i data-ic="leaf"></i></span> BIOFLORA</a>
+            <p>Florería sostenible y educativa. Plantas que crecen, aulas que aprenden.</p>
+        </div>
+        <div><h4>Explorar</h4><a href="#/inicio">Inicio</a><a href="#/tienda">Tienda</a><a href="#/guias">Guías de cuidado</a><a href="#/nosotros">Sobre nosotros</a></div>
+        <div><h4>Mi cuenta</h4><a href="#" data-accion="abrir-login">Ingresar</a><a href="#" data-accion="abrir-registro">Crear cuenta</a><a href="#/pedidos">Mis pedidos</a></div>
+        <div><h4>Proyecto</h4><p>INFRAMEN · Bachillerato Técnico Vocacional en Desarrollo de Software · sección 3-3</p></div>
+    </div>
+    <div class="pie-fin">© <span id="anio"></span> BIOFLORA · Proyecto académico</div>
+</footer>
+
+<!-- ===== Ingreso / registro ===== -->
+<div id="modal-auth" class="modal">
+    <div class="modal-caja auth">
+        <div class="auth-lado">
+            <h3>Cultiva con BIOFLORA</h3>
+            <p style="opacity:.9">Una cuenta, todo el proyecto verde.</p>
+            <ul>
+                <li><i data-ic="cart"></i> Compra plantas e insumos</li>
+                <li><i data-ic="book"></i> Lee las guías completas</li>
+                <li><i data-ic="package"></i> Sigue tus pedidos</li>
+            </ul>
+        </div>
+        <div class="auth-form">
+            <button class="modal-cerrar" data-cerrar="modal-auth" aria-label="Cerrar"><i data-ic="x"></i></button>
+            <h2 id="auth-titulo">Bienvenido de nuevo</h2>
+            <p id="auth-sub" style="color:#667068">Ingresa para comprar y ver tus pedidos.</p>
+            <div class="auth-tabs">
+                <button type="button" id="tab-login" class="activo" data-accion="abrir-login">Ingresar</button>
+                <button type="button" id="tab-registro" data-accion="abrir-registro">Registrarme</button>
+            </div>
+            <form id="form-auth" novalidate>
+                <div id="campo-nombre" hidden>
+                    <label for="auth-nombre">Nombre completo</label>
+                    <div class="campo-icono"><i data-ic="user"></i><input id="auth-nombre" type="text" maxlength="80" autocomplete="name"></div>
+                </div>
+                <label for="auth-correo">Correo electrónico</label>
+                <input id="auth-correo" type="email" maxlength="100" autocomplete="email" placeholder="tucorreo@ejemplo.com">
+                <div id="campo-telefono" hidden>
+                    <label for="auth-telefono">Teléfono (opcional)</label>
+                    <input id="auth-telefono" type="tel" maxlength="15" autocomplete="tel" placeholder="7000-0000">
+                </div>
+                <label for="auth-clave">Contraseña</label>
+                <div class="campo-icono">
+                    <input id="auth-clave" type="password" maxlength="72" autocomplete="current-password" style="padding-left:13px;padding-right:44px">
+                    <button type="button" class="ver-clave" data-accion="ver-clave" data-campo="auth-clave" aria-label="Mostrar contraseña"><i data-ic="eye"></i></button>
+                </div>
+                <div id="campo-clave2" hidden>
+                    <label for="auth-clave2">Repite la contraseña</label>
+                    <input id="auth-clave2" type="password" maxlength="72" autocomplete="new-password">
+                    <small class="ayuda">Mínimo 8 caracteres.</small>
+                </div>
+                <button id="btn-auth" type="submit" class="btn btn-primario btn-lg btn-bloque" style="margin-top:20px">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Detalle de producto ===== -->
+<div id="modal-producto" class="modal">
+    <div class="modal-caja ancha">
+        <button class="modal-cerrar" data-cerrar="modal-producto" aria-label="Cerrar"><i data-ic="x"></i></button>
+        <div id="producto-contenido"></div>
+    </div>
+</div>
+
+<!-- ===== Guía completa ===== -->
+<div id="modal-guia" class="modal">
+    <div class="modal-caja">
+        <button class="modal-cerrar" data-cerrar="modal-guia" aria-label="Cerrar"><i data-ic="x"></i></button>
+        <div id="guia-contenido"></div>
+    </div>
+</div>
+
+<!-- ===== Carrito ===== -->
+<div id="modal-carrito" class="modal drawer">
+    <div class="drawer-caja">
+        <div class="drawer-cab"><h2>Mi carrito</h2><button class="modal-cerrar" style="position:static" data-cerrar="modal-carrito" aria-label="Cerrar"><i data-ic="x"></i></button></div>
+        <div class="drawer-cuerpo">
+            <div id="carrito-lista"></div>
+            <div id="carrito-vacio" class="carrito-vacio" hidden>
+                <div class="grande">🪴</div><h3>Tu carrito está vacío</h3><p>Agrega plantas e insumos para empezar tu proyecto verde.</p>
+                <a class="btn btn-primario" href="#/tienda" data-cerrar="modal-carrito">Ir a la tienda</a>
+            </div>
+        </div>
+        <div id="carrito-pie" class="drawer-pie">
+            <div class="total-linea"><span>Total</span><span id="carrito-total">$0.00</span></div>
+            <label for="tipo-entrega" style="margin-top:0">Tipo de entrega</label>
+            <select id="tipo-entrega">
+                <option value="Retiro en la institución">Retiro en la institución</option>
+                <option value="Domicilio">Entrega a domicilio</option>
+            </select>
+            <div id="campo-direccion" hidden>
+                <label for="direccion-entrega">Dirección de entrega</label>
+                <input id="direccion-entrega" type="text" maxlength="200" placeholder="Colonia, calle, casa...">
+            </div>
+            <button id="btn-comprar" class="btn btn-primario btn-lg btn-bloque" style="margin-top:16px">Confirmar pedido</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Pedido confirmado ===== -->
+<div id="modal-exito" class="modal">
+    <div class="modal-caja pequena">
+        <div style="font-size:64px">🌱</div>
+        <h2>¡Pedido confirmado!</h2>
+        <p style="color:#667068">Tu pedido <strong>#<span id="exito-numero"></span></strong> fue registrado. Puedes seguir su estado en Mis pedidos.</p>
+        <div class="fila-botones" style="justify-content:center">
+            <a class="btn btn-primario" href="#/pedidos" data-cerrar="modal-exito">Ver mis pedidos</a>
+            <button class="btn btn-fantasma" data-cerrar="modal-exito">Seguir comprando</button>
+        </div>
+    </div>
+</div>
+
+<script src="comun.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

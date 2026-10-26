@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOFLORA · Panel de administración</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="adm">
+    <aside id="adm-menu" class="adm-menu">
+        <button id="adm-cerrar" class="icono-btn adm-cerrar" aria-label="Cerrar menú"><i data-ic="x"></i></button>
+        <a class="logo" href="admin.html"><span class="logo-marca"><i data-ic="leaf"></i></span> BIOFLORA</a>
+        <nav>
+            <a data-vista="panel" class="activo"><i data-ic="grid"></i> Panel</a>
+            <a data-vista="productos"><i data-ic="package"></i> Productos</a>
+            <a data-vista="categorias"><i data-ic="tag"></i> Categorías</a>
+            <a data-vista="guias"><i data-ic="book"></i> Guías de cuidado</a>
+            <a data-vista="pedidos"><i data-ic="cart"></i> Pedidos <span id="badge-pedidos" class="contador" hidden>0</span></a>
+            <a data-vista="usuarios"><i data-ic="users"></i> Usuarios</a>
+            <a data-vista="reportes"><i data-ic="chart"></i> Reportes</a>
+        </nav>
+        <hr>
+        <a href="index.html"><i data-ic="home"></i> Ver la tienda</a>
+        <button id="btn-salir" class="enlace"><i data-ic="logout"></i> Cerrar sesión</button>
+    </aside>
+    <div id="adm-fondo" class="adm-fondo"></div>
+
+    <div>
+        <header class="adm-top">
+            <button id="btn-menu-adm" class="icono-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="adm-menu"><i data-ic="menu"></i></button>
+            <h1 id="titulo-vista">Panel de administración</h1>
+            <div class="adm-user"><span id="avatar-admin" class="avatar">A</span><span id="nombre-admin">Administrador</span></div>
+        </header>
+
+        <main class="adm-contenido">
+            <!-- PANEL -->
+            <section id="vista-panel">
+                <div class="stats">
+                    <div class="stat-card"><div class="ico"><i data-ic="dollar"></i></div><div><span>Ventas del mes</span><strong id="stat-ventas">$0.00</strong></div></div>
+                    <div class="stat-card"><div class="ico"><i data-ic="cart"></i></div><div><span>Pedidos del mes</span><strong id="stat-pedidos">0</strong></div></div>
+                    <div class="stat-card"><div class="ico"><i data-ic="package"></i></div><div><span>Productos activos</span><strong id="stat-productos">0</strong></div></div>
+                    <div class="stat-card"><div class="ico"><i data-ic="users"></i></div><div><span>Clientes</span><strong id="stat-clientes">0</strong></div></div>
+                </div>
+                <div class="dos-col">
+                    <div class="panel"><h2><i data-ic="chart"></i> Ventas por mes</h2><div id="dash-ventas"></div></div>
+                    <div class="panel"><h2>Pedidos por estado</h2><div id="dash-estados"></div></div>
+                </div>
+                <div class="dos-col">
+                    <div class="panel"><h2>Pedidos recientes</h2>
+                        <div class="tabla-wrap"><table><thead><tr><th>#</th><th>Cliente</th><th>Fecha</th><th>Total</th><th>Estado</th></tr></thead><tbody id="tabla-recientes"></tbody></table></div>
+                    </div>
+                    <div class="panel"><h2><i data-ic="alert"></i> Stock bajo</h2><div id="dash-stock"></div></div>
+                </div>
+            </section>
+
+            <!-- PRODUCTOS -->
+            <section id="vista-productos" hidden>
+                <div class="panel">
+                    <div class="toolbar-adm">
+                        <div class="campo-icono"><i data-ic="search"></i><input id="buscar-productos" type="search" placeholder="Buscar producto..."></div>
+                        <select id="filtro-cat-producto"><option value="">Todas las categorías</option></select>
+                        <select id="filtro-estado-producto"><option value="">Todos</option><option value="1">Activos</option><option value="0">Inactivos</option></select>
+                        <button class="btn btn-primario" data-accion="nuevo-producto"><i data-ic="plus"></i> Nuevo producto</button>
+                    </div>
+                    <div class="tabla-wrap"><table>
+                        <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acciones</th></tr></thead>
+                        <tbody id="tabla-productos"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <!-- CATEGORÍAS -->
+            <section id="vista-categorias" hidden>
+                <div class="panel">
+                    <div class="toolbar-adm"><span style="flex:1"></span><button class="btn btn-primario" data-accion="nueva-categoria"><i data-ic="plus"></i> Nueva categoría</button></div>
+                    <div class="tabla-wrap"><table>
+                        <thead><tr><th>Nombre</th><th>Descripción</th><th>Productos</th><th>Acciones</th></tr></thead>
+                        <tbody id="tabla-categorias"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <!-- GUÍAS -->
+            <section id="vista-guias" hidden>
+                <div class="panel">
+                    <div class="toolbar-adm">
+                        <div class="campo-icono"><i data-ic="search"></i><input id="buscar-guias" type="search" placeholder="Buscar guía o producto..."></div>
+                        <button class="btn btn-primario" data-accion="nueva-guia"><i data-ic="plus"></i> Nueva guía</button>
+                    </div>
+                    <div class="tabla-wrap"><table>
+                        <thead><tr><th>Producto</th><th>Título</th><th>Tipo</th><th>Nivel</th><th>Acciones</th></tr></thead>
+                        <tbody id="tabla-guias"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <!-- PEDIDOS -->
+            <section id="vista-pedidos" hidden>
+                <div class="panel">
+                    <div class="pills" id="pills-pedidos">
+                        <button class="pill activo" data-accion="estado-pedido" data-valor="">Todos</button>
+                        <button class="pill" data-accion="estado-pedido" data-valor="Pendiente">Pendiente</button>
+                        <button class="pill" data-accion="estado-pedido" data-valor="En preparación">En preparación</button>
+                        <button class="pill" data-accion="estado-pedido" data-valor="Entregado">Entregado</button>
+                        <button class="pill" data-accion="estado-pedido" data-valor="Cancelado">Cancelado</button>
+                    </div>
+                    <div class="toolbar-adm"><div class="campo-icono"><i data-ic="search"></i><input id="buscar-pedidos" type="search" placeholder="Buscar por # o cliente..."></div></div>
+                    <div class="tabla-wrap"><table>
+                        <thead><tr><th>#</th><th>Cliente</th><th>Fecha</th><th>Entrega</th><th>Total</th><th>Estado</th><th>Cambiar a</th></tr></thead>
+                        <tbody id="tabla-pedidos"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <!-- USUARIOS -->
+            <section id="vista-usuarios" hidden>
+                <div class="panel">
+                    <div class="toolbar-adm"><div class="campo-icono"><i data-ic="search"></i><input id="buscar-usuarios" type="search" placeholder="Buscar por nombre o correo..."></div></div>
+                    <div class="tabla-wrap"><table>
+                        <thead><tr><th>Usuario</th><th>Rol</th><th>Registro</th><th>Estado</th><th>Acción</th></tr></thead>
+                        <tbody id="tabla-usuarios"></tbody>
+                    </table></div>
+                </div>
+            </section>
+
+            <!-- REPORTES -->
+            <section id="vista-reportes" hidden>
+                <div class="dos-col">
+                    <div class="panel"><h2>Ventas por mes</h2><div id="rep-ventas"></div></div>
+                    <div class="panel"><h2>Pedidos por estado</h2><div id="rep-estados"></div></div>
+                </div>
+                <div class="panel"><h2>Productos más vendidos</h2><div id="rep-top"></div></div>
+                <div class="panel"><h2>Ventas en un periodo</h2>
+                    <div class="rango">
+                        <div><label for="rep-desde">Desde</label><input type="date" id="rep-desde"></div>
+                        <div><label for="rep-hasta">Hasta</label><input type="date" id="rep-hasta"></div>
+                        <div><button id="btn-rep-rango" class="btn btn-primario btn-bloque">Consultar</button></div>
+                    </div>
+                    <div id="rep-rango-resultado" class="resultado-rango" hidden></div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Modal producto -->
+<div id="modal-producto" class="modal"><div class="modal-caja">
+    <button class="modal-cerrar" data-cerrar="modal-producto" aria-label="Cerrar"><i data-ic="x"></i></button>
+    <h2 id="producto-titulo">Nuevo producto</h2>
+    <label for="p-nombre">Nombre *</label><input id="p-nombre" maxlength="100">
+    <div class="fila-2">
+        <div><label for="p-precio">Precio ($) *</label><input id="p-precio" type="number" step="0.01" min="0"></div>
+        <div><label for="p-stock">Stock</label><input id="p-stock" type="number" min="0" step="1"></div>
+    </div>
+    <label for="p-categoria">Categoría *</label><select id="p-categoria"></select>
+    <label for="p-descripcion">Descripción</label><textarea id="p-descripcion" rows="2"></textarea>
+    <div class="fila-2">
+        <div><label for="p-luz">Luz</label><select id="p-luz"><option value="">—</option><option>Baja</option><option>Media</option><option>Alta</option></select></div>
+        <div><label for="p-riego">Riego</label><select id="p-riego"><option value="">—</option><option>Diario</option><option>Semanal</option><option>Quincenal</option><option>Mensual</option></select></div>
+        <div><label for="p-tamano">Tamaño</label><select id="p-tamano"><option value="">—</option><option>Pequeño</option><option>Mediano</option><option>Grande</option></select></div>
+        <div><label for="p-uso">Uso</label><select id="p-uso"><option value="">—</option><option>Aula</option><option>Huerto escolar</option><option>Hogar</option></select></div>
+    </div>
+    <label for="p-imagen">Imagen (ruta, ej. img/helecho.png)</label><input id="p-imagen" maxlength="255">
+    <label style="display:flex;gap:8px;align-items:center"><input id="p-activo" type="checkbox" checked style="width:auto"> Producto activo (visible en la tienda)</label>
+    <div class="fila-botones" style="margin-top:18px">
+        <button id="btn-guardar-producto" class="btn btn-primario" style="flex:1">Guardar</button>
+        <button class="btn btn-fantasma" data-cerrar="modal-producto">Cancelar</button>
+    </div>
+</div></div>
+
+<!-- Modal categoría -->
+<div id="modal-categoria" class="modal"><div class="modal-caja">
+    <button class="modal-cerrar" data-cerrar="modal-categoria" aria-label="Cerrar"><i data-ic="x"></i></button>
+    <h2 id="categoria-titulo">Nueva categoría</h2>
+    <label for="c-nombre">Nombre *</label><input id="c-nombre" maxlength="60">
+    <label for="c-descripcion">Descripción</label><input id="c-descripcion" maxlength="150">
+    <div class="fila-botones" style="margin-top:18px">
+        <button id="btn-guardar-categoria" class="btn btn-primario" style="flex:1">Guardar</button>
+        <button class="btn btn-fantasma" data-cerrar="modal-categoria">Cancelar</button>
+    </div>
+</div></div>
+
+<!-- Modal guía -->
+<div id="modal-guia" class="modal"><div class="modal-caja">
+    <button class="modal-cerrar" data-cerrar="modal-guia" aria-label="Cerrar"><i data-ic="x"></i></button>
+    <h2 id="guia-titulo-modal">Nueva guía de cuidado</h2>
+    <label for="g-producto">Producto *</label><select id="g-producto"></select>
+    <label for="g-titulo">Título *</label><input id="g-titulo" maxlength="120">
+    <div class="fila-2">
+        <div><label for="g-tipo">Tipo</label><select id="g-tipo"><option>Cuidado</option><option>Siembra</option><option>Reciclaje</option></select></div>
+        <div><label for="g-nivel">Dificultad</label><select id="g-nivel"><option>Fácil</option><option>Medio</option><option>Difícil</option></select></div>
+    </div>
+    <label for="g-contenido">Contenido *</label><textarea id="g-contenido" rows="6"></textarea>
+    <div class="fila-botones" style="margin-top:18px">
+        <button id="btn-guardar-guia" class="btn btn-primario" style="flex:1">Guardar</button>
+        <button class="btn btn-fantasma" data-cerrar="modal-guia">Cancelar</button>
+    </div>
+</div></div>
+
+<!-- Modal detalle de pedido -->
+<div id="modal-detalle-pedido" class="modal"><div class="modal-caja">
+    <button class="modal-cerrar" data-cerrar="modal-detalle-pedido" aria-label="Cerrar"><i data-ic="x"></i></button>
+    <h2 id="dp-titulo">Detalle del pedido</h2>
+    <div id="dp-contenido" class="tabla-wrap"></div>
+</div></div>
+
+<script src="comun.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
