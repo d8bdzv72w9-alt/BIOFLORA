@@ -1,7 +1,7 @@
 // ===== BIOFLORA · utilidades compartidas (tienda + panel admin) =====
 
 // Si la página se abre desde http://localhost:3000 usa rutas relativas
-const API = (location.protocol === 'file:' || location.port !== '3000') ? 'http://localhost:3000/api' : '/api';
+const API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:3000/api' : '/api';
 
 // Escapa texto antes de ponerlo en innerHTML (evita XSS)
 function esc(t) {
