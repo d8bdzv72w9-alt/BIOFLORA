@@ -45,7 +45,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api', (req, res) => res.status(404).json({ error: 'Ruta no encontrada' }));
 
 // ── Frontend: el mismo servidor entrega la tienda (http://localhost:3000) ──
-const carpetaFrontend = process.env.FRONTEND_DIR || path.join(__dirname, '..', 'BIOFLORA FRONTEND');
+const carpetaFrontend = process.env.FRONTEND_DIR || __dirname;
 if (fs.existsSync(carpetaFrontend)) {
     app.use(express.static(carpetaFrontend));
 }
